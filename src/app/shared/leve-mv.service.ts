@@ -28,8 +28,8 @@ export class LeveMvService {
     return this.http.delete(`${this.baseUrl}/deletar/${id}`);
   }
 
-  async refreshList() {
-    return await this.http.get(this.baseUrl + '/listar').subscribe(res => this.list = res as Leveme[]);
+  refreshList() {
+    return this.http.get(this.baseUrl + '/listar').subscribe(res => this.list = res as Leveme[]);
   }
 
   listarPorNome(nome: string) {
