@@ -3,11 +3,6 @@
   padding: 0px;
 }
 
-a {
-  text-decoration: none;
-}
-
-
 .header {
   background-color: #eb6e6e;
   margin-bottom: 20px;
@@ -24,11 +19,6 @@ a {
 .pesquisa input {
   width: 300px;
 }
-
-
-
-
-
 
 /* You can add global styles to this file, and also import other style files */
 .form-group label {

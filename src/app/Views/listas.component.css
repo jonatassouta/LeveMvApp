@@ -9,7 +9,7 @@
 .caixas {
     display: flex;
     border: 1px solid  black;
-    padding: 40px;
+    padding: 25px;
     margin: 10px;
     margin-top: 20px;
     justify-content: center;

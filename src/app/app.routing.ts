@@ -8,7 +8,7 @@ import { ListasComponent } from "./Views/listas.component";
 import { LojasComponent } from "./Views/lojas/lojas.component";
 
 const APP_ROUTES: Routes = [
-    {path: '', component: HomeComponent},
+    {path: '', component: ListasComponent},
     {path: 'leveMv', component: LeveMvComponent},
     {path: 'login', component: LoginComponent},
     {path: 'listas', component: ListasComponent},
