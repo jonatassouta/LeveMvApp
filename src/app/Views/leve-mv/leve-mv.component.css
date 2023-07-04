@@ -1,0 +1,16 @@
+.header {
+    background-color: #eb6e6e;
+    margin-bottom: 20px;
+}
+
+.lista {
+    margin-top: 20px;
+}
+
+.pesquisa {
+    margin-bottom: 10px;
+}
+
+.pesquisa input {
+    width: 300px;
+}

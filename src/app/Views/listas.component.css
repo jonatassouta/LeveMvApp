@@ -1,0 +1,25 @@
+.header {
+    background-color: #eb6e6e;
+}
+
+.container-md {
+    height: 100vh;
+}
+
+.caixas {
+    display: flex;
+    border: 1px solid  black;
+    padding: 40px;
+    margin: 10px;
+    margin-top: 20px;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    background-color: #413d3d;
+    cursor: pointer;
+}
+
+.caixas:hover {
+    background-color: #706f6b9d;
+}
+

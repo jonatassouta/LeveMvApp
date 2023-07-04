@@ -1,6 +1,6 @@
 import { Guid } from 'guid-typescript';
 
-export class Leveme {
+export class LeveMv {
     id: string  = Guid.EMPTY;
     nome: string='';
 }

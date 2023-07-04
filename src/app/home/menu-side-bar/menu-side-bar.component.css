@@ -1,0 +1,11 @@
+.container-menu {
+  display: flex;
+  align-items: center;
+  flex-direction: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.sidemenu {
+  color: white;
+}

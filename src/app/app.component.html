@@ -1,8 +1,11 @@
-<div class="row">
-    <app-home></app-home>
-    <div class="col-md app-container">
-      <div class="container-fluid">
-        <router-outlet></router-outlet>
-      </div>
+<!-- Corpo -->
+<div class="row body">
+  <div class="col-md-1 menu">
+    <app-menu-side-bar></app-menu-side-bar>
+  </div>
+  <div class="col-md container-fluid">
+    <div class="container-md">
+      <router-outlet></router-outlet>
     </div>
+  </div>
 </div>

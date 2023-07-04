@@ -1,17 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Leveme } from './leve-mv.model';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { Guid } from 'guid-typescript';
+import { Loja } from './lojas.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LeveMvService {
+export class LojaService {
 
-  formData: Leveme = new Leveme();
-  readonly baseUrl = 'https:localhost:7044/api/LeveMe';
-  list : Leveme[] = [];
+  formData: Loja = new Loja();
+  readonly baseUrl = 'https:localhost:7044/api/cliente';
+  list : Loja[] = [];
   
   constructor(private http: HttpClient) { }
   
@@ -29,11 +28,11 @@ export class LeveMvService {
   }
 
   refreshList() {
-    return this.http.get(this.baseUrl + '/listar').subscribe(res => this.list = res as Leveme[]);
+    return this.http.get(this.baseUrl + '/listar').subscribe(res => this.list = res as Loja[]);
   }
 
   listarPorNome(nome: string) {
-    return this.http.get(`${this.baseUrl}/listar-por-nome/${nome}`).subscribe(res => this.list = res as Leveme[]);
+    return this.http.get(`${this.baseUrl}/listar-por-nome/${nome}`).subscribe(res => this.list = res as Loja[]);
   }
 
   pesquisarPoId(id: string){

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeFormComponent } from './home-form.component';
+import { LeveMvComponent } from './leve-mv.component';
 
-describe('HomeFormComponent', () => {
-  let component: HomeFormComponent;
-  let fixture: ComponentFixture<HomeFormComponent>;
+describe('LeveMvComponent', () => {
+  let component: LeveMvComponent;
+  let fixture: ComponentFixture<LeveMvComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeFormComponent]
+      declarations: [LeveMvComponent]
     });
-    fixture = TestBed.createComponent(HomeFormComponent);
+    fixture = TestBed.createComponent(LeveMvComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

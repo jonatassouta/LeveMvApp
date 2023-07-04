@@ -1,0 +1,78 @@
+<div class="jumbotron py-3 header">
+    <h1 class="display-4 text-center">Lojas</h1>
+  </div>
+  
+  <!-- Modal Cadastrar-->
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastro"><i class="fa fa-plus"
+      aria-hidden="true"></i>  Cadastar</button>
+  
+  <div class="modal fade" id="modalCadastro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Leve MV</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-form-leve-mv></app-form-leve-mv>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+  
+    <div class="lista">
+  
+      <div class="pesquisa">
+        <label>Pesquisar</label>
+        <input class="form-control form-control-lg" placeholder="Nome" name="nome" #nome="ngModel"
+          [(ngModel)]="loja.formData.nome" [class.invalid]="nome.invalid && nome.touched"
+          (keyup)="listarPorNome(loja.formData.nome)">
+      </div>
+      
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let loja of loja.list | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
+            <td (click)="populateForm(loja)">{{loja.id}}</td>
+            <td (click)="populateForm(loja)">{{loja.nome}}</td>
+            <td>
+              <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                (click)="atribuirIdNome(loja.id, loja.nome)"><i class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+  
+      </table>
+      <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
+    </div>
+  
+    <!-- Modal Excluir-->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Excluir</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Tem certeza que deseja excluir o <b>{{nomeLoja}} </b></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" (click)="onDelete(idLoja)"
+              data-bs-dismiss="modal">Excluir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
