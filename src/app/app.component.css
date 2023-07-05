@@ -13,6 +13,11 @@
   width: 100%;
 }
 
+th {
+  background-color: #212121;
+  color: white;
+}
+
 @media screen and (max-width: 1350px) {
   .col-md.app-container {
     margin-top: 50px;

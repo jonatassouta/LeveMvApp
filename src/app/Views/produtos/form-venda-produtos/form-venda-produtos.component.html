@@ -1,0 +1,45 @@
+<form novalidate autocomplete="off" #form="ngForm" (submit)="vendaProduto(produto.formData.id, quantidadeVenda, form)">
+    <input type="hidden" name="LeveMvId" [value]="produto.formData.id" />
+    <div class="form-group formulario">
+        <div>
+            <div class="row">
+                <div class="col-md">
+                    <label>Nome</label>
+                    <input class="form-control form-control-lg col-" placeholder="Full Name" name="nome"
+                        #nome="ngModel" [(ngModel)]="produto.formData.nome" required
+                        [class.invalid]="nome.invalid && nome.touched" disabled>
+                </div>
+                <div class="col-md">
+                    <label>Preço</label>
+                    <input type="number" class="form-control form-control-lg " placeholder="Preço" name="preco"
+                        #preco="ngModel" [(ngModel)]="produto.formData.preco" required
+                        [class.invalid]="preco.invalid && preco.touched" disabled>
+                </div>
+            </div>
+            <div class="row">
+                <div class="div col-md">
+                    <label>Quantidade Disponivel</label>
+                    <input type="number" class="form-control form-control-lg " placeholder="Quantidade" name="quantidade"
+                        #quantidade="ngModel" [(ngModel)]="produto.formData.quantidade" required
+                        [class.invalid]="quantidade.invalid && quantidade.touched" disabled>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="div col-md">
+                    <label>Quantidade Vendida</label>
+                    <input type="number" class="form-control form-control-lg " placeholder="Quantidade Vendida" name="quantidadeVendida"
+                        #quantidadeVendida="ngModel" [(ngModel)]="quantidadeVenda" required
+                        [class.invalid]="quantidade.invalid && quantidade.touched">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="form-group button">
+        <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="form.invalid"
+            data-bs-dismiss="modal">Confirmar</button>
+    </div>
+</form>

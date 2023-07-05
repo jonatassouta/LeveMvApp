@@ -17,6 +17,9 @@ import { FormLeveMvComponent } from './Views/leve-mv/form-leve-mv/form-leve-mv.c
 import { LoginComponent } from './login/login.component';
 import { ListasComponent } from './Views/listas.component';
 import { FormLojasComponent } from './Views/lojas/form-lojas/form-lojas.component';
+import { ProdutosComponent } from './Views/produtos/produtos.component';
+import { ProdutosFormComponent } from './Views/produtos/produtos-form/produtos-form.component';
+import { FormVendaProdutosComponent } from './Views/produtos/form-venda-produtos/form-venda-produtos.component';
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import { FormLojasComponent } from './Views/lojas/form-lojas/form-lojas.componen
     FormLeveMvComponent,
     LoginComponent,
     ListasComponent,
-    FormLojasComponent   
+    FormLojasComponent,
+    ProdutosComponent,
+    ProdutosFormComponent,
+    FormVendaProdutosComponent   
   ],
   imports: [
     BrowserModule,

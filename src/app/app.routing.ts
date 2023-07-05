@@ -6,6 +6,7 @@ import { NgModule } from "@angular/core";
 import { LoginComponent } from "./login/login.component";
 import { ListasComponent } from "./Views/listas.component";
 import { LojasComponent } from "./Views/lojas/lojas.component";
+import { ProdutosComponent } from "./Views/produtos/produtos.component";
 
 const APP_ROUTES: Routes = [
     {path: '', component: ListasComponent},
@@ -13,6 +14,7 @@ const APP_ROUTES: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'listas', component: ListasComponent},
     {path: 'lojas', component: LojasComponent},
+    {path: 'produtos', component: ProdutosComponent}
 ];
 
 @NgModule({

@@ -26,6 +26,10 @@ export class LeveMvComponent implements OnInit{
     this.service.formData = Object.assign({}, selectedRecord);
   }
 
+  resetForm() {
+    this.service.formData = new LeveMv();
+  }
+
   atribuirIdNome(id: string, nome: string) {
     this.idLeveMv = id;
     this.nomeLeveMv = nome;

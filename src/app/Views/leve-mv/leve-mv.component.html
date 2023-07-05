@@ -2,9 +2,15 @@
   <h1 class="display-4 text-center">Leve Mv</h1>
 </div>
 
+<div>
+  <a routerLink="/listas"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+</div>
+
+<br>
+
 <!-- Modal Cadastrar-->
 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastro"><i class="fa fa-plus"
-    aria-hidden="true"></i>  Cadastar</button>
+    aria-hidden="true"></i> Cadastar</button>
 
 <div class="modal fade" id="modalCadastro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -12,7 +18,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Leve MV</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="this.resetForm()"></button>
       </div>
       <div class="modal-body">
         <app-form-leve-mv></app-form-leve-mv>
@@ -31,22 +37,27 @@
         [(ngModel)]="service.formData.nome" [class.invalid]="nome.invalid && nome.touched"
         (keyup)="listarPorNome(service.formData.nome)">
     </div>
-    
+
     <table class="table">
       <thead class="thead-light">
         <tr>
           <th>Id</th>
           <th>Nome</th>
-          <th></th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let leveMv of service.list | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
+        <tr
+          *ngFor="let leveMv of service.list | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
           <td (click)="populateForm(leveMv)" data-bs-toggle="modal" data-bs-target="#modalCadastro">{{leveMv.id}}</td>
-          <td (click)="populateForm(leveMv)"data-bs-toggle="modal" data-bs-target="#modalCadastro">{{leveMv.nome}}</td>
+          <td (click)="populateForm(leveMv)" data-bs-toggle="modal" data-bs-target="#modalCadastro">{{leveMv.nome}}</td>
           <td>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-              (click)="atribuirIdNome(leveMv.id, leveMv.nome)"><i class="fas fa-trash-alt"></i></button>
+            <button style="margin-right: 5px;" class="btn btn-danger" data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop" (click)="atribuirIdNome(leveMv.id, leveMv.nome)"><i
+                class="fas fa-trash-alt"></i></button>
+
+            <button class="btn btn-primary" (click)="populateForm(leveMv)" data-bs-toggle="modal"
+              data-bs-target="#modalCadastro"><i class="fas fa-edit"></i></button>
           </td>
         </tr>
       </tbody>
