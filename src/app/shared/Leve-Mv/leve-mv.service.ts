@@ -36,6 +36,6 @@ export class LeveMvService {
   }
 
   pesquisarPoId(id: string){
-    this.http.get(`${this.baseUrl}/pesquisar/${id}`);
+    return this.http.get(`${this.baseUrl}/pesquisar/${id}`);
   }
 }

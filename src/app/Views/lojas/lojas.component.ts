@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
+import { LeveMv } from 'src/app/shared/Leve-Mv/leve-mv.model';
+import { LeveMvService } from 'src/app/shared/Leve-Mv/leve-mv.service';
 import { Loja } from 'src/app/shared/Lojas/lojas.model';
 import { LojaService } from 'src/app/shared/Lojas/lojas.service';
 
@@ -16,7 +19,7 @@ export class LojasComponent  implements OnInit{
   public paginaAtual = 1;
   
   constructor(public loja: LojaService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, public leve: LeveMvService) { }
     
     ngOnInit(): void {
       this.loja.refreshList();
@@ -32,7 +35,7 @@ export class LojasComponent  implements OnInit{
   }
 
     onDelete(id: string) {
-      this.loja.deleteLeveMv(id).pipe(
+      this.loja.deleteLoja(id).pipe(
         finalize(() => {
           this.loja.refreshList(),
           this.toastr.error("Apagado com sucesso", 'Loja')
@@ -40,11 +43,19 @@ export class LojasComponent  implements OnInit{
       ).subscribe();   
   }
   
-  async listarPorNome(nome: string) {
+  listarPorNome(nome: string) {
     if (nome !== ""){
-      await this.loja.listarPorNome(nome);    
+      this.loja.listarPorNome(nome);    
     } else{
       this.loja.refreshList();
     }
+  }
+
+  getLeveMv(id: string): LeveMv{
+   return this.leve.list.find(x => x.id == id)!;
+  }
+
+  resetForm() {
+    this.loja.formData = new Loja();
   }
 }

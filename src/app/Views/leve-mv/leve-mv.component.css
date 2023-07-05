@@ -14,3 +14,8 @@
 .pesquisa input {
     width: 300px;
 }
+
+th {
+    background-color: #212121;
+    color: white;
+}

@@ -41,9 +41,9 @@ export class LeveMvComponent implements OnInit{
   }
   
 
-  async listarPorNome(nome: string) {
+  listarPorNome(nome: string) {
     if (nome !== ""){
-      await this.service.listarPorNome(nome);    
+      this.service.listarPorNome(nome);    
     } else{
       this.service.refreshList();
     }

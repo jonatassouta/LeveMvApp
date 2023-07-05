@@ -3,8 +3,14 @@
   border: 1px solid black;
 }
 
-.container-fluid {
+.container {
   padding-left: 0;
+}
+
+.router {
+  padding: 0;
+  margin-left: 35px;
+  width: 100%;
 }
 
 @media screen and (max-width: 1350px) {

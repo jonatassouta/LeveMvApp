@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, finalize, throwError } from 'rxjs';
+import { LeveMvService } from 'src/app/shared/Leve-Mv/leve-mv.service';
 import { Loja } from 'src/app/shared/Lojas/lojas.model';
 import { LojaService } from 'src/app/shared/Lojas/lojas.service';
 
@@ -12,14 +13,15 @@ import { LojaService } from 'src/app/shared/Lojas/lojas.service';
   styleUrls: ['./form-lojas.component.css']
 })
 export class FormLojasComponent implements OnInit{
-  
+
   constructor(public loja: LojaService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, public leveMv: LeveMvService) { }
   
-    ngOnInit(): void {  
+    ngOnInit(): void {
+      this.leveMv.refreshList();  
   }
 
-  async onSubmit(form: NgForm) {
+  onSubmit(form: NgForm) {
     if (this.loja.formData.id == '00000000-0000-0000-0000-000000000000')
     {
       this.insertRecord(form);
@@ -30,26 +32,26 @@ export class FormLojasComponent implements OnInit{
   }
 
   insertRecord(form: NgForm) {
-    this.loja.postLeveMv().pipe(
+    this.loja.formData.dataCadastro = new Date();
+    this.loja.postLoja().pipe(
       finalize(() => {
         this.resetForm(form);
         this.loja.refreshList();
         this.toastr.success('Cadastrado com sucesso', 'Loja');
       })
-    ).subscribe(),
-      catchError(this.handleError);
-  
+      ,catchError(this.handleError)
+      ).subscribe();
   }
 
   updateRecord(form: NgForm) {
-    this.loja.putLeveMv().pipe(
+    this.loja.putLoja().pipe(
       finalize(() => {
         this.resetForm(form);
         this.loja.refreshList();
         this.toastr.success('Atualizado com sucesso', 'Loja');
       })
-    ).subscribe(),
-      catchError(this.handleError);
+      ,catchError(this.handleError)
+    ).subscribe();   
   }
 
   resetForm(form: NgForm) {
@@ -67,6 +69,6 @@ export class FormLojasComponent implements OnInit{
       errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
     }
     console.log(errorMessage);
-    return throwError(errorMessage);
+    return throwError(() => new Error(errorMessage));
   };
 }

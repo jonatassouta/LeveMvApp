@@ -19,7 +19,7 @@ export class FormLeveMvComponent implements OnInit{
     ngOnInit(): void {  
   }
 
-  async onSubmit(form: NgForm) {
+  onSubmit(form: NgForm) {
     if (this.service.formData.id == '00000000-0000-0000-0000-000000000000')
     {
       this.insertRecord(form);

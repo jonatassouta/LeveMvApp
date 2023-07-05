@@ -1,12 +1,70 @@
 <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
     <input type="hidden" name="LeveMvId" [value]="loja.formData.id" />
     <div class="form-group formulario">
-        <label>Nome</label>
-        <input class="form-control form-control-lg " placeholder="Full Name" name="cardOwnerName"
-            #cardOwnerName="ngModel" [(ngModel)]="loja.formData.nome"
-            required [class.invalid]="cardOwnerName.invalid && cardOwnerName.touched">
+        <div>
+            <div class="row">
+                <div class="col-md">
+                    <label>Nome</label>
+                    <input class="form-control form-control-lg col-" placeholder="Full Name" name="nome"
+                        #cardOwnerName="ngModel" [(ngModel)]="loja.formData.nome" required
+                        [class.invalid]="cardOwnerName.invalid && cardOwnerName.touched">
+                </div>
+                <div class="col-md">
+                    <label>CNPJ</label>
+                    <input type="number" class="form-control form-control-lg " placeholder="CNPJ" name="cnpj"
+                        #cnpj="ngModel" [(ngModel)]="loja.formData.cnpj" required
+                        [class.invalid]="cnpj.invalid && cnpj.touched">
+                </div>
+            </div>
+            <div class="row">
+                <div class="div col-md">
+                    <label>Endereço</label>
+                    <input class="form-control form-control-lg " placeholder="Endereço" name="cardOwnerName"
+                        #endereco="ngModel" [(ngModel)]="loja.formData.endereco" required
+                        [class.invalid]="endereco.invalid && endereco.touched">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md">
+                    <label>Bairro</label>
+                    <input class="form-control form-control-lg " placeholder="Bairro" name="bairro" #bairro="ngModel"
+                        [(ngModel)]="loja.formData.bairro" required [class.invalid]="bairro.invalid && bairro.touched">
+                </div>
+                <div class="col-md">
+                    <label>Cidade</label>
+                    <input class="form-control form-control-lg " placeholder="Cidade" name="cidade" #cidade="ngModel"
+                        [(ngModel)]="loja.formData.cidade" required [class.invalid]="cidade.invalid && cidade.touched">
+                </div>
+                <div class="col-md">
+                    <label>UF</label>
+                    <input class="form-control form-control-lg " placeholder="UF" name="uf" #uf="ngModel"
+                        [(ngModel)]="loja.formData.uf" required [class.invalid]="uf.invalid && uf.touched">
+                </div>
+            </div>
+
+            <label>Telefone</label>
+            <input class="form-control form-control-lg " placeholder="Telefone" name="telefone" #telefone="ngModel"
+                [(ngModel)]="loja.formData.telefone" required [class.invalid]="telefone.invalid && telefone.touched">
+
+            <label>Email</label>
+            <input class="form-control form-control-lg " placeholder="Email" name="email" #email="ngModel"
+                [(ngModel)]="loja.formData.email">
+
+            <label for="validationDefault04" class="form-label">LeveMv*</label>
+            <select class="form-select" name="leveID" id="validationDefault04"
+                [class.invalid]="leveID.invalid && leveID.touched" #leveID="ngModel"
+                [(ngModel)]="loja.formData.leveMvId" required>
+                <option *ngFor="let leve of leveMv.list" value={{leve.id}}>
+                    {{leve.nome}}</option>
+            </select>
+        </div>
     </div>
+
+    <br>
+
     <div class="form-group button">
-        <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="form.invalid" data-bs-dismiss="modal">Confirmar</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="form.invalid"
+            data-bs-dismiss="modal">Confirmar</button>
     </div>
 </form>

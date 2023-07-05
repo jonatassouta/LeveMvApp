@@ -9,21 +9,21 @@ import { Loja } from './lojas.model';
 export class LojaService {
 
   formData: Loja = new Loja();
-  readonly baseUrl = 'https:localhost:7044/api/cliente';
+  readonly baseUrl = 'https:localhost:7044/api/Cliente';
   list : Loja[] = [];
   
   constructor(private http: HttpClient) { }
   
-  postLeveMv() {
+  postLoja() {
     this.formData.id = Guid.create().toString();
     return this.http.post(this.baseUrl + '/cadastrar', this.formData);
   }
 
-  putLeveMv() {
+  putLoja() {
     return this.http.put(`${this.baseUrl}/atualizar`, this.formData);
   }
 
-  deleteLeveMv(id: string) {
+  deleteLoja(id: string) {
     return this.http.delete(`${this.baseUrl}/deletar/${id}`);
   }
 
