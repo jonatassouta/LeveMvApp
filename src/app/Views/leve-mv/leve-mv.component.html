@@ -2,86 +2,90 @@
   <h1 class="display-4 text-center">Leve Mv</h1>
 </div>
 
-<div>
-  <a routerLink="/listas"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-</div>
-
-<br>
-
-<!-- Modal Cadastrar-->
-<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastro"><i class="fa fa-plus"
-    aria-hidden="true"></i> Cadastar</button>
-
-<div class="modal fade" id="modalCadastro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Leve MV</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="this.resetForm()"></button>
-      </div>
-      <div class="modal-body">
-        <app-form-leve-mv></app-form-leve-mv>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="lista">
-
-    <div class="pesquisa">
-      <label>Pesquisar</label>
-      <input class="form-control form-control-lg" placeholder="Nome" name="nome" #nome="ngModel"
-        [(ngModel)]="service.formData.nome" [class.invalid]="nome.invalid && nome.touched"
-        (keyup)="listarPorNome(service.formData.nome)">
-    </div>
-
-    <table class="table">
-      <thead class="thead-light">
-        <tr>
-          <th>Id</th>
-          <th>Nome</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="let leveMv of service.list | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
-          <td (click)="populateForm(leveMv)" data-bs-toggle="modal" data-bs-target="#modalCadastro">{{leveMv.id}}</td>
-          <td (click)="populateForm(leveMv)" data-bs-toggle="modal" data-bs-target="#modalCadastro">{{leveMv.nome}}</td>
-          <td>
-            <button style="margin-right: 5px;" class="btn btn-danger" data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop" (click)="atribuirIdNome(leveMv.id, leveMv.nome)"><i
-                class="fas fa-trash-alt"></i></button>
-
-            <button class="btn btn-primary" (click)="populateForm(leveMv)" data-bs-toggle="modal"
-              data-bs-target="#modalCadastro"><i class="fas fa-edit"></i></button>
-          </td>
-        </tr>
-      </tbody>
-
-    </table>
-    <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
+<div class="container-lista">
+  <div>
+    <a routerLink="/listas"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
   </div>
 
-  <!-- Modal Excluir-->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  <br>
+
+  <!-- Modal Cadastrar-->
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastro"><i class="fa fa-plus"
+      aria-hidden="true"></i> Cadastar</button>
+
+  <div class="modal fade" id="modalCadastro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Excluir</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Leve MV</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="this.resetForm()"></button>
         </div>
         <div class="modal-body">
-          <p>Tem certeza que deseja excluir o <b>{{nomeLeveMv}} </b></p>
+          <app-form-leve-mv></app-form-leve-mv>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger" (click)="onDelete(idLeveMv)"
-            data-bs-dismiss="modal">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="lista">
+
+      <div class="pesquisa">
+        <label>Pesquisar</label>
+        <input class="form-control form-control-lg" placeholder="Nome" name="nome" #nome="ngModel"
+          [(ngModel)]="service.formData.nome" [class.invalid]="nome.invalid && nome.touched"
+          (keyup)="listarPorNome(service.formData.nome)">
+      </div>
+
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let leveMv of service.list | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
+            <td (click)="populateForm(leveMv)" data-bs-toggle="modal" data-bs-target="#modalCadastro">{{leveMv.id}}</td>
+            <td (click)="populateForm(leveMv)" data-bs-toggle="modal" data-bs-target="#modalCadastro">{{leveMv.nome}}
+            </td>
+            <td>
+              <button style="margin-right: 5px;" class="btn btn-danger" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop" (click)="atribuirIdNome(leveMv.id, leveMv.nome)"><i
+                  class="fas fa-trash-alt"></i></button>
+
+              <button class="btn btn-primary" (click)="populateForm(leveMv)" data-bs-toggle="modal"
+                data-bs-target="#modalCadastro"><i class="fas fa-edit"></i></button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+      <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
+    </div>
+
+    <!-- Modal Excluir-->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Excluir</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Tem certeza que deseja excluir o <b>{{nomeLeveMv}} </b></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" (click)="onDelete(idLeveMv)"
+              data-bs-dismiss="modal">Excluir</button>
+          </div>
         </div>
       </div>
     </div>

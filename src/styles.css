@@ -1,15 +1,22 @@
 * { 
   margin: 0px;
   padding: 0px;
+  font-family: Rubiklin, sans-serif;
 }
 
 .header {
-  background-color: #eb6e6e;
+  background-color: #075EBD;
   margin-bottom: 20px;
+  font-weight: 500;
+  color: #FFFFFF;
 }
 
 .lista {
   margin-top: 20px;
+}
+
+.container-lista {
+  padding: 0px 20px;
 }
 
 .pesquisa {
