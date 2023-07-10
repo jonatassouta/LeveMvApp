@@ -15,3 +15,7 @@ th {
     background-color: #212121;
     color: white;
 }
+
+div#container-table {
+    overflow-x: auto;
+}

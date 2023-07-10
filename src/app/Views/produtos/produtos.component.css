@@ -2,3 +2,18 @@ th {
     background-color: #212121;
     color: white;
 }
+
+div#container-table {
+    overflow-x: auto;
+}
+
+.bg-red {
+    background-color: rgb(255, 0, 0);
+    color: #ffff;
+    font-weight: bold;
+}
+
+.bg-normal {
+    background-color: rgb(160, 207, 160);
+    font-weight: bold;
+}

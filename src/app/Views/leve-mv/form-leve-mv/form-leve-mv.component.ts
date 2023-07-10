@@ -38,7 +38,6 @@ export class FormLeveMvComponent implements OnInit{
       })
     ).subscribe(),
       catchError(this.handleError);
-  
   }
 
   updateRecord(form: NgForm) {

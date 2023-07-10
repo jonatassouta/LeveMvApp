@@ -35,6 +35,14 @@ export class ProdutoService {
     return this.http.get(`${this.baseUrl}/listar-por-nome/${nome}`).subscribe(res => this.list = res as Produto[]);
   }
 
+  listarPorLoja(id: string, number: string) {
+    return this.http.get(`${this.baseUrl}/listar-cliente/${id},${number}`).subscribe(res => this.list = res as Produto[]);
+  }
+
+  filtroEstoque(number: string) {
+    return this.http.get(`${this.baseUrl}/filtro-por-estoque/${number}`).subscribe(res => this.list = res as Produto[]);
+  }
+
   pesquisarPoId(id: string){
     this.http.get(`${this.baseUrl}/pesquisar/${id}`);
   }

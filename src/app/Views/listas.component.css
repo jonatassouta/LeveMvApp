@@ -1,7 +1,6 @@
-
-
-.container-md {
+.row.container {
     height: 100vh;
+    padding: 0px 25px ;
 }
 
 .caixas {
@@ -43,3 +42,18 @@
     height: 50%;
     padding: 10px;
 }
+
+@media screen and (max-width: 764px) {
+    .caixas {
+        width: 95%;
+        
+    }
+
+    .row.container{
+        display: flex;
+        justify-content: center;
+
+        max-width: 800px;
+        margin: 0;
+    }
+  }

@@ -12,21 +12,20 @@ import { LojaService } from 'src/app/shared/Lojas/lojas.service';
   templateUrl: './form-lojas.component.html',
   styleUrls: ['./form-lojas.component.css']
 })
-export class FormLojasComponent implements OnInit{
+export class FormLojasComponent implements OnInit {
 
   constructor(public loja: LojaService,
     private toastr: ToastrService, public leveMv: LeveMvService) { }
-  
-    ngOnInit(): void {
-      this.leveMv.refreshList();  
+
+  ngOnInit(): void {
+    this.leveMv.refreshList();
   }
 
   onSubmit(form: NgForm) {
-    if (this.loja.formData.id == '00000000-0000-0000-0000-000000000000')
-    {
+    if (this.loja.formData.id == '00000000-0000-0000-0000-000000000000') {
       this.insertRecord(form);
     }
-    else{
+    else {
       this.updateRecord(form);
     }
   }
@@ -39,8 +38,8 @@ export class FormLojasComponent implements OnInit{
         this.loja.refreshList();
         this.toastr.success('Cadastrado com sucesso', 'Loja');
       })
-      ,catchError(this.handleError)
-      ).subscribe();
+      , catchError(this.handleError)
+    ).subscribe();
   }
 
   updateRecord(form: NgForm) {
@@ -50,8 +49,8 @@ export class FormLojasComponent implements OnInit{
         this.loja.refreshList();
         this.toastr.success('Atualizado com sucesso', 'Loja');
       })
-      ,catchError(this.handleError)
-    ).subscribe();   
+      , catchError(this.handleError)
+    ).subscribe();
   }
 
   resetForm(form: NgForm) {

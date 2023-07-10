@@ -9,10 +9,11 @@
   </div>
 
   <br>
+  
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastro"><i class="fa fa-plus"
+    aria-hidden="true"></i> Cadastar</button>
 
   <!-- Modal Cadastrar-->
-  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastro"><i class="fa fa-plus"
-      aria-hidden="true"></i> Cadastar</button>
 
   <div class="modal fade" id="modalCadastro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -34,55 +35,82 @@
 
     <div class="lista">
 
-      <div class="pesquisa">
-        <label>Pesquisar</label>
+      <div class="row pesquisa">
+        <div class="col">
+          <label>Pesquisar</label>
         <input class="form-control form-control-lg" placeholder="Nome" name="nome" #nome="ngModel"
           [(ngModel)]="produto.formData.nome" [class.invalid]="nome.invalid && nome.touched"
           (keyup)="listarPorNome(produto.formData.nome)">
+        </div>
+    
+        <div class="col">
+          <label for="validationDefault04" class="form-label" >Cliente*</label>
+          <select class="form-select" name="lojaID" id="validationDefault04"
+              [class.invalid]="lojaID.invalid && lojaID.touched" #lojaID="ngModel"
+              [(ngModel)]="produto.formData.clienteId" required  (change)="pesquisarPorLoja(produto.formData.clienteId)">
+              <option value="00000000-0000-0000-0000-000000000000">Nenhum</option>
+              <option *ngFor="let loja of loja.list" value={{loja.id}}>
+                  {{loja.nome}}</option>
+          </select>
+        </div> 
+
+        <div class="col">
+          <label class="form-label" >Filtrar Por:</label>
+          <select class="form-select" name="teste"          
+              [(ngModel)]="numeroFiltro" (change)="pesquisarPorLoja(produto.formData.clienteId)">
+              <option value="1">Nenhum</option>
+              <option value="2">Sem estoque</option>
+              <option value="3">Com estoque</option>
+          </select>
+        </div>
       </div>
 
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-            <th>Cliente Id</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let produto of produto.list | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
-            <td data-bs-toggle="modal" data-bs-target="#modalCadastro" (click)="populateForm(produto)">{{produto.nome}}
-            </td>
-            <td data-bs-toggle="modal" data-bs-target="#modalCadastro" (click)="populateForm(produto)">{{produto.preco}}
-            </td>
-            <td data-bs-toggle="modal" data-bs-target="#modalCadastro" (click)="populateForm(produto)">
-              {{produto.quantidade}}</td>
-            <td data-bs-toggle="modal" data-bs-target="#modalCadastro" (click)="populateForm(produto)">
-              {{produto.clienteId}}</td>
-            <td>
-              <button style="margin-right: 5px;" class="btn btn-primary" (click)="populateForm(produto)"
-                data-bs-toggle="modal" data-bs-target="#modalVenda">Venda</button>
-              <button style="margin-right: 5px;" class="btn btn-danger" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop" (click)="atribuirIdNome(produto.id, produto.nome)"><i
-                  class="fas fa-trash-alt"></i></button>
-              <button class="btn btn-primary" (click)="populateForm(produto)" data-bs-toggle="modal"
-                data-bs-target="#modalCadastro"><i class="fas fa-edit"></i></button>
-            </td>
-          </tr>
-        </tbody>
+      <div id="container-table ">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th>Nome</th>
+              <th>Preço</th>
+              <th>Quantidade</th>
+              <th>Cliente Id</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let produto of produto.list | paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
+              <td [ngClass]="produto.quantidade == 0 ? 'bg-red' : 'bg-normal'" data-bs-toggle="modal" data-bs-target="#modalCadastro" (click)="populateForm(produto)">
+                {{produto.nome}}
+              </td>
+              <td [ngClass]="produto.quantidade == 0 ? 'bg-red' : 'bg-normal'" data-bs-toggle="modal" data-bs-target="#modalCadastro" (click)="populateForm(produto)">
+                {{produto.preco}}
+              </td>
+              <td [ngClass]="produto.quantidade == 0 ? 'bg-red' : 'bg-normal'"data-bs-toggle="modal" data-bs-target="#modalCadastro" (click)="populateForm(produto)">
+                {{produto.quantidade}}</td>
+              <td [ngClass]="produto.quantidade == 0 ? 'bg-red' : 'bg-normal'" data-bs-toggle="modal" data-bs-target="#modalCadastro" (click)="populateForm(produto)">
+                {{produto.clienteId}}</td>
+              <td [ngClass]="produto.quantidade == 0 ? 'bg-red' : 'bg-normal'">
+                <button style="margin-right: 5px;" class="btn btn-primary" (click)="populateForm(produto)"
+                  data-bs-toggle="modal" data-bs-target="#modalVenda" *ngIf="produto.quantidade > 0">Venda</button>
+                <button style="margin-right: 5px;" class="btn btn-danger" data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop" (click)="atribuirIdNome(produto.id, produto.nome)"><i
+                    class="fas fa-trash-alt"></i></button>
+                <button class="btn btn-primary" (click)="populateForm(produto)" data-bs-toggle="modal"
+                  data-bs-target="#modalCadastro"><i class="fas fa-edit"></i></button>
+              </td>
+            </tr>
+          </tbody>
 
-        <tfoot>
-          <tr *ngIf="produto.list == null">
-            <td colspan="8">
-              <h4>Nenhum Produto Cadastrado</h4>
-            </td>
-          </tr>
-        </tfoot>
+          <tfoot>
+            <tr *ngIf="produto.list.length == 0">
+              <td colspan="8">
+                <h4>Nenhum Produto Encontrado</h4>
+              </td>
+            </tr>
+          </tfoot>
 
-      </table>
+        </table>
+      </div>
       <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
     </div>
   </div>

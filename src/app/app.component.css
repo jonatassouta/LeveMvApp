@@ -18,23 +18,17 @@ th {
   color: white;
 }
 
-/*
-@media screen and (max-width: 1350px) {
-  .col-md.app-container {
-    margin-top: 50px;
-    margin-left: initial;
-    padding-top: 15px;
-  }
 
-  .col-md-3 {
+@media screen and (max-width: 1350px) {
+  .menu {
     display: none;
   }
 
-  .container-fluid {
-    width: 100vw;
+  .container {
+    padding: 10px;
+    width: 100%;
   }
 }
 
 @media screen and (min-width: 1000px) {}
 
-*/

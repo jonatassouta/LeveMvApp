@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LeveMv } from './leve-mv.model';
 import { Guid } from 'guid-typescript';
+import { catchError, retry, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +39,18 @@ export class LeveMvService {
   pesquisarPoId(id: string){
     return this.http.get(`${this.baseUrl}/pesquisar/${id}`);
   }
+
+  // Manipulação de erros
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Erro ocorreu no lado do client
+      errorMessage = error.error.message;
+    } else {
+      // Erro ocorreu no lado do servidor
+      errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  };
 }

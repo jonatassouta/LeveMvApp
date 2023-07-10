@@ -12,19 +12,19 @@ import { LojaService } from 'src/app/shared/Lojas/lojas.service';
   templateUrl: './lojas.component.html',
   styleUrls: ['./lojas.component.css']
 })
-export class LojasComponent  implements OnInit{
+export class LojasComponent implements OnInit {
 
   public idLoja: string = '';
   public nomeLoja: string = '';
   public paginaAtual = 1;
-  
+
   constructor(public loja: LojaService,
     private toastr: ToastrService, public leve: LeveMvService) { }
-    
-    ngOnInit(): void {
-      this.loja.refreshList();
-    }
-    
+
+  ngOnInit(): void {
+    this.loja.refreshList();
+  }
+
   populateForm(selectedRecord: Loja) {
     this.loja.formData = Object.assign({}, selectedRecord);
   }
@@ -34,25 +34,25 @@ export class LojasComponent  implements OnInit{
     this.nomeLoja = nome;
   }
 
-    onDelete(id: string) {
-      this.loja.deleteLoja(id).pipe(
-        finalize(() => {
-          this.loja.refreshList(),
-          this.toastr.error("Apagado com sucesso", 'Loja')
-        })
-      ).subscribe();   
+  onDelete(id: string) {
+    this.loja.deleteLoja(id).pipe(
+      finalize(() => {
+        this.loja.refreshList(),
+        this.toastr.error("Apagado com sucesso", 'Loja')
+      })
+    ).subscribe();
   }
-  
+
   listarPorNome(nome: string) {
-    if (nome !== ""){
-      this.loja.listarPorNome(nome);    
-    } else{
+    if (nome !== "") {
+      this.loja.listarPorNome(nome);
+    } else {
       this.loja.refreshList();
     }
   }
 
-  getLeveMv(id: string): LeveMv{
-   return this.leve.list.find(x => x.id == id)!;
+  getLeveMv(id: string): LeveMv {
+    return this.leve.list.find(x => x.id == id)!;
   }
 
   resetForm() {

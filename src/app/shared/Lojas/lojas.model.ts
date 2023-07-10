@@ -10,6 +10,8 @@ export class Loja {
     uf: string = '';
     telefone: string = '';
     email?: string = '';
+    perfil: string = '';
+    senha: string = '';
     dataCadastro: Date = new Date();
     leveMvId: string = Guid.EMPTY;
 }
