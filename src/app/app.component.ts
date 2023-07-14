@@ -11,6 +11,8 @@ import { ProdutoService } from './shared/Produto/produto.service';
 })
 export class AppComponent implements OnInit{
 
+  isAuthenticate: boolean = false;
+
   constructor(public leve: LeveMvService, public cliente: LojaService, public produto: ProdutoService){}
 
   ngOnInit(): void {
