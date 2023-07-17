@@ -18,6 +18,19 @@ th {
   color: white;
 }
 
+.user { 
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  width: 91vw;
+  height: 110px;
+}
+
+.btn-sair {
+  margin-left: 25px;
+  width: 80px;
+}
+
 
 @media screen and (max-width: 1350px) {
   .menu {

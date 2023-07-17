@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../shared/Users/user.service';
 
 @Component({
   selector: 'app-login',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class ListasComponent {
 
+  constructor(public user: UserService){}
 }

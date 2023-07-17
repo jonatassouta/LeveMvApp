@@ -43,7 +43,7 @@
           (keyup)="listarPorNome(produto.formData.nome)">
         </div>
     
-        <div class="col">
+        <div class="col" *ngIf="user.userLogged.user.role === 'manager'">
           <label for="validationDefault04" class="form-label" >Cliente*</label>
           <select class="form-select" name="lojaID" id="validationDefault04"
               [class.invalid]="lojaID.invalid && lojaID.touched" #lojaID="ngModel"

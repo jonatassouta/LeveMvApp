@@ -2,7 +2,7 @@
     <h1 class="display-4 text-center">Home</h1>
 </div>
 <div class="row container ">
-    <div class="caixas col-md-2" routerLink="/leveMv">
+    <div *ngIf="user.userLogged.user.role === 'manager'" class="caixas col-md-2" routerLink="/leveMv">
         <div id="item">
             <i class="fa fa-cogs fa-4x" aria-hidden="true"></i>
         </div>
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="caixas col-md-2" routerLink="/lojas">
+    <div *ngIf="user.userLogged.user.role === 'manager'" class="caixas col-md-2" routerLink="/lojas">
         <div id="item">
             <i class="fa fa-address-book fa-4x" aria-hidden="true"></i>
         </div>

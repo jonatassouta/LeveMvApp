@@ -1,33 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/Users/user.service';
-import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  public constructor(public user: UserService, private toastr: ToastrService) {
-  }
-  ngOnInit(): void {
+  imagePath = 'assets/logo/logo.png'
+
+  public constructor(public user: UserService, private toastr: ToastrService, public router: Router) {
   }
 
   authenticate() {
-
-    var s = this.user.formData.userName;
-    this.user.authenticate().subscribe(data => {
-      debugger;
-      if (data) {
+    this.user.authenticate().subscribe((data: any) => {
+      if (data.user) {
         this.toastr.success('Logado de Sucesso', 'Usuario');
+        this.user.postUserData(data);
+        this.router.navigate(['/listas']).then(nav => {
+          window.location.reload();
+        })
       } else {
         this.toastr.success('Erro, Usuario ou senha incorreto', 'Usuario');
-      } 
+      }
     }, error => {
-        console.log(error)
-        this.toastr.error('Erro, Usuario ou senha incorreto', 'Usuario');
-      })
+      console.log(error.error);
+      this.toastr.error('Erro, Usuario ou senha incorreto', 'ERRO');
+    })
   }
 }

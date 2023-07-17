@@ -4,6 +4,7 @@ import { finalize } from 'rxjs';
 import { LojaService } from 'src/app/shared/Lojas/lojas.service';
 import { Produto } from 'src/app/shared/Produto/produto.model';
 import { ProdutoService } from 'src/app/shared/Produto/produto.service';
+import { UserService } from 'src/app/shared/Users/user.service';
 
 @Component({
   selector: 'app-produtos',
@@ -18,10 +19,10 @@ export class ProdutosComponent implements OnInit {
   public paginaAtual = 1;
 
   constructor(public produto: ProdutoService,
-    private toastr: ToastrService, public loja: LojaService) { }
+    private toastr: ToastrService, public loja: LojaService, public user: UserService) { }
 
   ngOnInit(): void {
-    this.produto.refreshList();
+    this.pesquisarPorLoja(this.user.userLogged.user.id);
     this.loja.refreshList();
   }
 
@@ -37,7 +38,7 @@ export class ProdutosComponent implements OnInit {
   onDelete(id: string) {
     this.produto.deleteProduto(id).pipe(
       finalize(() => {
-        this.produto.refreshList(),
+        this.pesquisarPorLoja(this.user.userLogged.user.id),
           this.toastr.error("Apagado com sucesso", 'Produto')
       })
     ).subscribe();
@@ -47,7 +48,7 @@ export class ProdutosComponent implements OnInit {
     if (nome !== "") {
       this.produto.listarPorNome(nome);
     } else {
-      this.produto.refreshList();
+      this.pesquisarPorLoja(this.user.userLogged.user.id);
     }
   }
 

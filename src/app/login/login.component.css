@@ -13,3 +13,9 @@
 .form-floating {
     width: 560px;
 }
+
+.img-logo{
+    position: relative;
+    margin-bottom: -70px;
+    z-index: -3;
+}
