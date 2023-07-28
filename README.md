@@ -1,27 +1,29 @@
-# LeveMvApp
+# 🚀 Leve Me (Front-End)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
+Este é um projeto desenvolvido em Angular, consiste em uma aplicação web para de cadastro e gestão de estoque. Este projeto conta com uma API desenvolvida em C# <a href="">Link Api</a>
 
-## Development server
+## ⚙️ Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+* Login com autenticação por token;
+* Cadastro, listagem, esclusão e atualização de produtos, clientes e tipos de "leve me";
+* Gerenciamento de estoque e vendas para clientes;
+* Funcionalidades liberadas de acordo como o perfil do ususario logado;
+* Mensagens personalizadas de erro;
 
-## Code scaffolding
+## 🔭 Demonstração
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Layout
 
-## Build
+![front](https://github.com/jonatassouta/LeveMvApp/assets/44308032/e9fc60ae-3a3c-45b3-a9a7-360f15d487ac)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Video
 
-## Running unit tests
+## 🛠 Como executar o projeto
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Para executar o projeto, siga as seguintes etapas:
+1. Clone este repositório em sua máquina local usando o comando git clone ```https://github.com/jonatassouta/LeveMvApp.git```
+2. Abra o projeto no Visual Studio Code ou em outra IDE de sua preferência.
+3. No terminal da IDE execute o comando ```npm i``` para instalar os pacotes.
+4. Ainda no terminal execute o comando ```npm install -g @angular/cli``` para instalar o Angular.
+5. Feito a instalação execute o comando ```ng serve``` para copilar o projeto.
+6. Para testar todas a funcionalidades é nescessario estar com a API rodando na sua maquina, basta baixa-la aqui  ```https://github.com/jonatassouta/LeveMvApp``` os comandos para a executa-la estão descritos na página.
