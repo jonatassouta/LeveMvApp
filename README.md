@@ -1,6 +1,6 @@
 # 🚀 Leve Me (Front-End)
 
-Este projeto foi desenvolvido em Angular, e consiste em uma aplicação web para de cadastro e gestão de estoque. Ele já está integrado com uma API desenvolvida em C# <a href="https://github.com/jonatassouta/LeveMeApi">Link API</a>
+Este projeto foi desenvolvido em Angular, e consiste em uma aplicação web para cadastro e gestão de estoque. Ele já está integrado com uma API desenvolvida em C# <a href="https://github.com/jonatassouta/LeveMeApi">Link API</a>
 
 ## ⚙️ Funcionalidades
 
