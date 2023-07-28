@@ -12,9 +12,11 @@ Este é um projeto desenvolvido em Angular, consiste em uma aplicação web para
 
 ## 🔭 Demonstração
 
-Layout
+Layout perfil admin
 
 ![front](https://github.com/jonatassouta/LeveMvApp/assets/44308032/e9fc60ae-3a3c-45b3-a9a7-360f15d487ac)
+
+Layout perfil cliente
 
 Video
 
