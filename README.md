@@ -31,7 +31,7 @@ Para executar o projeto, siga as seguintes etapas:
 2. Abra o projeto no Visual Studio Code ou em outra IDE de sua preferência.
 3. No terminal da IDE execute o comando ```npm i``` para instalar os pacotes.
 4. Ainda no terminal execute o comando ```npm install -g @angular/cli``` para instalar o Angular.
-5. Feito a instalação execute o comando ```ng serve``` para copilar o projeto.
+5. Feito a instalação execute o comando ```ng serve``` para compilar o projeto e executá-lo.
 6. Para testar todas a funcionalidades é necessário estar com a API rodando na sua máquina, basta baixá-la aqui  ```https://github.com/jonatassouta/LeveMeApi``` os comandos para a executá-la estão descritos na página.
 
 ## 🗺 Conclusão
