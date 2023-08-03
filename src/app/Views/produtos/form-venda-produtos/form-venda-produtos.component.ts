@@ -1,9 +1,10 @@
+import { Produto } from './../../../shared/Produto/produto.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, finalize, throwError } from 'rxjs';
-import { Produto } from 'src/app/shared/Produto/produto.model';
+import { UserService } from 'src/app/auth/services/user.service';
 import { ProdutoService } from 'src/app/shared/Produto/produto.service';
 
 @Component({
@@ -14,19 +15,28 @@ import { ProdutoService } from 'src/app/shared/Produto/produto.service';
 export class FormVendaProdutosComponent {
 
   constructor(public produto: ProdutoService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, private login: UserService) { }
 
-public quantidadeVenda: number = 0;
+  public quantidadeVenda: number = 0;
+  userLogger = this.login.getUser();
 
   vendaProduto(id: string, qtd: number, form: NgForm) {
-    this.produto.putVendaProduto(id, qtd).pipe(
-      finalize(() => {
+
+    this.produto.putVendaProduto(id, qtd).subscribe((data: any) => {
+      if (data) {
         this.resetForm(form);
-        this.produto.refreshList();
-        this.toastr.success('Estoque Atualizado', 'Produto');
-      })
-      , catchError(this.handleError)
-    ).subscribe();
+        this.produto.listarPorLoja(this.userLogger.user.id, "1");
+        if(data === "Estoque Atualizado!"){
+          this.toastr.success(data, 'Produto');
+        }else {
+          this.toastr.error(data, 'Produto');
+        }
+      }
+    }, error => {
+      console.log(error.error);
+      this.toastr.error("Erro Interno", 'ERRO');
+    })
+
   }
 
   resetForm(form: NgForm) {

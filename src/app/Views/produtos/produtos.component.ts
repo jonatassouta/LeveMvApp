@@ -4,7 +4,8 @@ import { finalize } from 'rxjs';
 import { LojaService } from 'src/app/shared/Lojas/lojas.service';
 import { Produto } from 'src/app/shared/Produto/produto.model';
 import { ProdutoService } from 'src/app/shared/Produto/produto.service';
-import { UserService } from 'src/app/shared/Users/user.service';
+import { UserService } from 'src/app/auth/services/user.service';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-produtos',
@@ -36,12 +37,14 @@ export class ProdutosComponent implements OnInit {
   }
 
   onDelete(id: string) {
-    this.produto.deleteProduto(id).pipe(
-      finalize(() => {
+    this.produto.deleteProduto(id).subscribe(
+      data => {
         this.pesquisarPorLoja(this.user.userLogged.user.id),
-          this.toastr.error("Apagado com sucesso", 'Produto')
+        this.toastr.error("Apagado com sucesso", 'Produto')
+      }, error => {
+        console.log(error.error);
+        this.toastr.error('Erro', 'ERRO');
       })
-    ).subscribe();
   }
 
   listarPorNome(nome: string) {
@@ -61,6 +64,9 @@ export class ProdutosComponent implements OnInit {
   }
 
   pesquisarPorLoja(id: string) {
+    if(id === Guid.EMPTY)
+      id = this.user.userLogged.user.id;
+
     return this.produto.listarPorLoja(id, this.numeroFiltro);
   }
 }

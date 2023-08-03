@@ -48,6 +48,7 @@ export class ProdutoService {
   }
 
   putVendaProduto(id: string, qtd: number) {
+    
     return this.http.put(`${this.baseUrl}/vender/${id},${qtd}`, this.formData);
   }
 }

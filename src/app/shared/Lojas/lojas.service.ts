@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { Loja } from './lojas.model';
+import { UserService } from '../../auth/services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class LojaService {
   readonly baseUrl = 'https:localhost:7044/api/Cliente';
   list : Loja[] = [];
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private user: UserService) {}
   
   postLoja() {
     this.formData.id = Guid.create().toString();

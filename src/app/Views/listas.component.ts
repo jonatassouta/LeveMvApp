@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { UserService } from '../shared/Users/user.service';
+import { UserService } from '../auth/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,5 +9,8 @@ import { UserService } from '../shared/Users/user.service';
 })
 export class ListasComponent {
 
-  constructor(public user: UserService){}
+  constructor(public user: UserService, private router: Router){
+    const nav = this.router.getCurrentNavigation();
+    console.log(nav?.extras.state);
+  }
 }

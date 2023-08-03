@@ -6,6 +6,7 @@ import { catchError, finalize, throwError } from 'rxjs';
 import { LojaService } from 'src/app/shared/Lojas/lojas.service';
 import { Produto } from 'src/app/shared/Produto/produto.model';
 import { ProdutoService } from 'src/app/shared/Produto/produto.service';
+import { UserService } from 'src/app/auth/services/user.service';
 
 @Component({
   selector: 'app-produtos-form',
@@ -14,19 +15,19 @@ import { ProdutoService } from 'src/app/shared/Produto/produto.service';
 })
 export class ProdutosFormComponent implements OnInit {
 
+  public numeroFiltro: string = '1';
   constructor(public produto: ProdutoService,
-    private toastr: ToastrService, public loja: LojaService) { }
-  
-    ngOnInit(): void {
-      this.loja.refreshList();  
+    private toastr: ToastrService, public loja: LojaService, private user: UserService) { }
+
+  ngOnInit(): void {
+    this.loja.refreshList();
   }
 
   onSubmit(form: NgForm) {
-    if (this.produto.formData.id == '00000000-0000-0000-0000-000000000000')
-    {
+    if (this.produto.formData.id == '00000000-0000-0000-0000-000000000000') {
       this.insertRecord(form);
     }
-    else{
+    else {
       this.updateRecord(form);
     }
   }
@@ -38,19 +39,19 @@ export class ProdutosFormComponent implements OnInit {
         this.produto.refreshList();
         this.toastr.success('Cadastrado com sucesso', 'Produto');
       })
-      ,catchError(this.handleError)
-      ).subscribe();
+      , catchError(this.handleError)
+    ).subscribe();
   }
 
   updateRecord(form: NgForm) {
+    
     this.produto.putProduto().pipe(
       finalize(() => {
-        this.resetForm(form);
-        this.produto.refreshList();
-        this.toastr.success('Atualizado com sucesso', 'Produto');
-      })
-      ,catchError(this.handleError)
-    ).subscribe();   
+      this.resetForm(form);
+      this.pesquisarPorLoja(this.user.userLogged.user.id),
+      this.toastr.success('Atualizado com sucesso', 'Produto');
+    })).subscribe(),
+    catchError(this.handleError);
   }
 
   resetForm(form: NgForm) {
@@ -70,4 +71,8 @@ export class ProdutosFormComponent implements OnInit {
     console.log(errorMessage);
     return throwError(() => new Error(errorMessage));
   };
+
+  pesquisarPorLoja(id: string) {
+    return this.produto.listarPorLoja(id, this.numeroFiltro);
+  }
 }

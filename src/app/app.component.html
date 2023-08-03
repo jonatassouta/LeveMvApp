@@ -1,16 +1,10 @@
 <!-- Corpo -->
 <div class="row">
-  <div class="col-md menu" *ngIf="isAuthenticaded">
-    <app-menu-side-bar></app-menu-side-bar> 
-  </div>
   <div class="col-md-11 container">
-    <div class="router">
-      <div *ngIf="userLogged" class="user d-flex justify-content-end align-items-center">
-        <h4>Olá, {{userLogged?.user?.userName}}</h4>
-        <button type="button"class="btn btn-light  btn-sair" (click)="logout()">sair</button>
-      </div>
-      
-      <router-outlet></router-outlet>
-    </div>  
+    <div *ngIf="userLogged" class="user d-flex justify-content-end align-items-center">
+      <h4>Olá, {{userLogged?.user?.userName}}</h4>
+      <button type="button" class="btn btn-light  btn-sair" (click)="logout()">sair</button>
+    </div>
+    <router-outlet></router-outlet>
   </div>
 </div>

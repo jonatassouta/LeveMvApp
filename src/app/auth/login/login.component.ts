@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/Users/user.service';
+import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -12,8 +12,7 @@ export class LoginComponent {
 
   imagePath = 'assets/logo/logo.png'
 
-  public constructor(public user: UserService, private toastr: ToastrService, public router: Router) {
-  }
+  public constructor(public user: UserService, private toastr: ToastrService, public router: Router) { }
 
   authenticate() {
     this.user.authenticate().subscribe((data: any) => {

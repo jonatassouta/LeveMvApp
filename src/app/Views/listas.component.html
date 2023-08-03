@@ -1,31 +1,33 @@
-<div class="jumbotron py-3 header">
-    <h1 class="display-4 text-center">Home</h1>
-</div>
-<div class="row container ">
-    <div *ngIf="user.userLogged.user.role === 'manager'" class="caixas col-md-2" routerLink="/leveMv">
-        <div id="item">
-            <i class="fa fa-cogs fa-4x" aria-hidden="true"></i>
-        </div>
-        <div id="txt">
-            <h2>Leve Mv</h2>
-        </div>
+<div *ngIf="user.userLogged.user">
+    <div class="jumbotron py-3 header">
+        <h1 class="display-4 text-center">Home</h1>
     </div>
+    <div class="row container ">
+        <div *ngIf="user.userLogged.user.role === 'Manager'" class="caixas col-md-2" routerLink="/leveMv">
+            <div id="item">
+                <i class="fa fa-cogs fa-4x" aria-hidden="true"></i>
+            </div>
+            <div id="txt">
+                <h2>Leve Mv</h2>
+            </div>
+        </div>
 
-    <div *ngIf="user.userLogged.user.role === 'manager'" class="caixas col-md-2" routerLink="/lojas">
-        <div id="item">
-            <i class="fa fa-address-book fa-4x" aria-hidden="true"></i>
+        <div *ngIf="user.userLogged.user.role === 'Manager'" class="caixas col-md-2" routerLink="/lojas">
+            <div id="item">
+                <i class="fa fa-address-book fa-4x" aria-hidden="true"></i>
+            </div>
+            <div id="txt">
+                <h2>Lojas</h2>
+            </div>
         </div>
-        <div id="txt">
-            <h2>Lojas</h2>
-        </div>
-    </div>
 
-    <div class="caixas col-md-2" routerLink="/produtos">
-        <div id="item">
-            <i class="fa fa-cubes fa-4x" aria-hidden="true"></i>
-        </div>
-        <div id="txt">
-            <h2>Produtos</h2>
+        <div class="caixas col-md-2" routerLink="/produtos">
+            <div id="item">
+                <i class="fa fa-cubes fa-4x" aria-hidden="true"></i>
+            </div>
+            <div id="txt">
+                <h2>Produtos</h2>
+            </div>
         </div>
     </div>
 </div>

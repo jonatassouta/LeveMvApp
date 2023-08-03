@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { LeveMvService } from './shared/Leve-Mv/leve-mv.service';
 import { LojaService } from './shared/Lojas/lojas.service';
 import { ProdutoService } from './shared/Produto/produto.service';
-import { LoginComponent } from './login/login.component';
-import { UserService } from './shared/Users/user.service';
+import { LoginComponent } from './auth/login/login.component';
+import { UserService } from './auth/services/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AppComponent implements OnInit{
 
+  product: any;
   isAuthenticaded:boolean = false;
   userLogged: any;
 
-  constructor(public leve: LeveMvService, public cliente: LojaService, public produto: ProdutoService, private router: Router, public user: UserService){ }
+  constructor(private http: HttpClient, public leve: LeveMvService, public cliente: LojaService, public produto: ProdutoService, private router: Router, public user: UserService){ }
 
   ngOnInit(): void {
     this.leve.refreshList();

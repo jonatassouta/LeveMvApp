@@ -10,8 +10,8 @@
 
   <br>
   
-  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastro"><i class="fa fa-plus"
-    aria-hidden="true"></i> Cadastar</button>
+  <button *ngIf="user.userLogged.user.role === 'Manager'" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastro"><i class="fa fa-plus"
+    aria-hidden="true" ></i> Cadastar</button>
 
   <!-- Modal Cadastrar-->
 
@@ -43,7 +43,7 @@
           (keyup)="listarPorNome(produto.formData.nome)">
         </div>
     
-        <div class="col" *ngIf="user.userLogged.user.role === 'manager'">
+        <div class="col" *ngIf="user.userLogged.user.role === 'Manager'">
           <label for="validationDefault04" class="form-label" >Cliente*</label>
           <select class="form-select" name="lojaID" id="validationDefault04"
               [class.invalid]="lojaID.invalid && lojaID.touched" #lojaID="ngModel"
@@ -91,7 +91,7 @@
                 {{produto.clienteId}}</td>
               <td [ngClass]="produto.quantidade == 0 ? 'bg-red' : 'bg-normal'">
                 <button style="margin-right: 5px;" class="btn btn-primary" (click)="populateForm(produto)"
-                  data-bs-toggle="modal" data-bs-target="#modalVenda" *ngIf="produto.quantidade > 0">Venda</button>
+                  data-bs-toggle="modal" data-bs-target="#modalVenda" *ngIf="produto.quantidade > 0 && user.userLogged.user.role === 'Cliente'">Venda</button>
                 <button style="margin-right: 5px;" class="btn btn-danger" data-bs-toggle="modal"
                   data-bs-target="#staticBackdrop" (click)="atribuirIdNome(produto.id, produto.nome)"><i
                     class="fas fa-trash-alt"></i></button>
