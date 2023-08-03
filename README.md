@@ -1,27 +1,41 @@
-# LeveMvApp
+# 🚀 Leve Me (Front-End)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
+Este projeto foi desenvolvido em Angular, e consiste em uma aplicação web para cadastro e gestão de estoque. Ele já está integrado com uma API desenvolvida em C# <a href="https://github.com/jonatassouta/LeveMeApi">Link API</a>
 
-## Development server
+## ⚙️ Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+* Login com autenticação por token;
+* Cadastro, listagem, exclusão e atualização de produtos, clientes e tipos de "leve me";
+* Gerenciamento de estoque e vendas para clientes;
+* Funcionalidades liberadas de acordo como o perfil do usuário logado;
+* Mensagens personalizadas de erro;
 
-## Code scaffolding
+## 🔭 Demonstração
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Layout perfil admin
 
-## Build
+![front](https://github.com/jonatassouta/LeveMvApp/assets/44308032/e9fc60ae-3a3c-45b3-a9a7-360f15d487ac)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Layout perfil cliente
 
-## Running unit tests
+[EM BREVE]
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Video
 
-## Running end-to-end tests
+[EM BREVE]
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🛠 Como executar o projeto
 
-## Further help
+Para executar o projeto, siga as seguintes etapas:
+1. Clone este repositório em sua máquina local usando o comando git clone ```https://github.com/jonatassouta/LeveMvApp.git```
+2. Abra o projeto no Visual Studio Code ou em outra IDE de sua preferência.
+3. No terminal da IDE execute o comando ```npm i``` para instalar os pacotes.
+4. Ainda no terminal execute o comando ```npm install -g @angular/cli``` para instalar o Angular.
+5. Feito a instalação execute o comando ```ng serve``` para compilar o projeto e executá-lo.
+6. Para testar todas a funcionalidades é necessário estar com a API rodando na sua máquina, basta baixá-la aqui  ```https://github.com/jonatassouta/LeveMeApi``` os comandos para a executá-la estão descritos na página.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 🗺 Conclusão
+
+A aplicação web "Leve me", cumpre bem a solução pela qual foi proposto, que é o cadastro e gestão dos estoque e vendas, oferece um layout simples e intuitivo sobre suas funcionalidades, sendo exibidos conforme o perfil logado, oferece além disto a segurança proporcionada pela API na geração dos tokens de acesso, restringindo ainda mais os usuários que podem estar logando e fazendo alterações. Este projeto foi um desafio e que esta me empolgando muito desenvolvê-lo, continua em desenvolvimento e terá novas funcionalidades em breve. 
+
+Criticas, sugestões e feedbacks são bem vindos.
